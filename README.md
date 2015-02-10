@@ -1,4 +1,4 @@
 Pff2 s3 module
 ==============================
 
-Manage get and put to Amazon s3
+Manages get and put operations to Amazon s3
