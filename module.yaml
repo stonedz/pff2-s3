@@ -1,0 +1,4 @@
+name: pff2-s3
+version: "0.1"
+desc: Manage Amazon s3 storage
+class: Pff2S3

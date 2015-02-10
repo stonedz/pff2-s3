@@ -1,0 +1,4 @@
+moduleConf:
+  bucketName: bucket-name
+  AWSKey: aws-key
+  AWSPass: aws-secret

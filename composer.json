@@ -1,0 +1,30 @@
+{
+	"name": "stonedz/pff2-s3",
+	"type": "pff2-module",
+	"description": "Manages s3 storage",
+	"license": "MIT",
+	"keywords": [
+		"pff2", "module", "files", "amazon", "s3"
+	],
+	"authors": [
+		{
+			"name": "Paolo Fagni",
+			"email": "paolo.fagni@gmail.com",
+			"role": "Developer"
+		}
+	],
+	"homepage": "https://github.com/stonedz/pff2-s3",
+	"require": {
+		"stonedz/pff2-installers": "*",
+    	"aws/aws-sdk-php": "2.*"
+	},
+  	"require-dev": {
+        "phpunit/phpunit": "4.3.*",
+        "stonedz/pff2": "2.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "pff\\modules\\": "src/"
+        }
+    }
+}
