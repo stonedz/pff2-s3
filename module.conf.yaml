@@ -1,4 +1,7 @@
 moduleConf:
-  bucketName: bucket-name
-  AWSKey: aws-key
-  AWSPass: aws-secret
+  bucketName: your-s3-bucket-name
+  AWSKey: IAM-AWS-KEY
+  AWSPass: IAM-AWS-PASSWORD
+  AWSRegion: 'eu-central-1'
+  # Cloudfront access point, or false if not used. If set, all request to $pff_path_files will be replaced with the cloudfront URL
+  AWSCloudfrontUrl: 'https://d1c96a4w3gziwl.cloudfront.net/'

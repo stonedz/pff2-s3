@@ -4,6 +4,8 @@ namespace pff\modules;
 
 use Aws\S3\S3Client;
 use pff\Abs\AModule;
+use pff\Abs\AView;
+use pff\Core\ServiceContainer;
 use pff\Iface\IConfigurableModule;
 
 class Pff2S3 extends AModule implements IConfigurableModule {
@@ -30,16 +32,28 @@ class Pff2S3 extends AModule implements IConfigurableModule {
     private $awsPass;
 
     /**
+     * AWS region
+     */
+    private $region;
+
+    /**
      * @var S3Client
      */
     private $s3Client;
 
+    /**
+     * @var string
+     */
+    private $cloudfrontUrl;
+
     public function __construct($confFile = 'pff2-s3/module.conf.local.yaml') {
         $this->loadConfig($confFile);
 
-        $this->s3Client = S3Client::factory(array(
+        $this->s3Client = new S3Client(array(
             'key' => $this->awsKey,
-            'secret' => $this->awsPass
+            'secret' => $this->awsPass,
+            'region' => $this->region,
+            'version'=> '2006-03-01'
         ));
     }
 
@@ -52,6 +66,8 @@ class Pff2S3 extends AModule implements IConfigurableModule {
         $this->bucketName = $conf['moduleConf']['bucketName'];
         $this->awsKey = $conf['moduleConf']['AWSKey'];
         $this->awsPass = $conf['moduleConf']['AWSPass'];
+        $this->region = $conf['moduleConf']['AWSRegion'];
+        $this->cloudfrontUrl = $conf['moduleConf']['AWSCloudfrontUrl'];
     }
 
     /**
@@ -149,5 +165,18 @@ class Pff2S3 extends AModule implements IConfigurableModule {
         return $this->bucketName;
     }
 
+    /**
+     * @return string
+     */
+    public function getCloudfrontUrl() {
+        return $this->cloudfrontUrl;
+    }
+
+    /**
+     * @param string $cloudfrontUrl
+     */
+    public function setCloudfrontUrl($cloudfrontUrl) {
+        $this->cloudfrontUrl = $cloudfrontUrl;
+    }
 
 }
