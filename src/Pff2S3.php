@@ -139,7 +139,15 @@ class Pff2S3 extends AModule implements IConfigurableModule {
      * @param $bucketName string
      */
     public function setBucket($bucketName) {
-
+        $this->bucketName = $bucketName;
     }
+
+    /**
+     * @return string
+     */
+    public function getBucketName() {
+        return $this->bucketName;
+    }
+
 
 }
