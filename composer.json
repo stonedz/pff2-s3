@@ -16,11 +16,11 @@
 	"homepage": "https://github.com/stonedz/pff2-s3",
 	"require": {
 		"stonedz/pff2-installers": "*",
-    	"aws/aws-sdk-php": "2.*"
+    	"aws/aws-sdk-php": "3.*"
 	},
   	"require-dev": {
         "phpunit/phpunit": "4.3.*",
-        "stonedz/pff2": "3.*"
+        "stonedz/pff2": "2.*"
     },
     "autoload": {
         "psr-4": {
