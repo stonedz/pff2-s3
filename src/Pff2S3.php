@@ -50,8 +50,10 @@ class Pff2S3 extends AModule implements IConfigurableModule {
         $this->loadConfig($confFile);
 
         $this->s3Client = new S3Client(array(
-            'key' => $this->awsKey,
-            'secret' => $this->awsPass,
+            'credentials' => array(
+                'key' => $this->awsKey,
+                'secret' => $this->awsPass,
+            ),
             'region' => $this->region,
             'version'=> '2006-03-01'
         ));
