@@ -135,6 +135,24 @@ class Pff2S3 extends AModule implements IConfigurableModule {
         }
     }
 
+    /**
+     * Deletes an object given its key
+     * @param $key Key name on S3 bucket
+     * @return bool
+     */
+    public function deleteFile($key) {
+        $res = $this->s3Client->deleteObject(array(
+            'Bucket' => $this->bucketName,
+            'Key' => $key
+        ));
+        if($res) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     public function uploadDir($loaclDirPath, $remotePath = null, $isPublic = false) {
         $options = array();
         if($isPublic) {
