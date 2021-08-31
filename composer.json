@@ -19,7 +19,7 @@
     	"aws/aws-sdk-php": "3.*"
 	},
   	"require-dev": {
-        "stonedz/pff2": "2.*"
+        "stonedz/pff2": "3.0.x-dev"
     },
     "autoload": {
         "psr-4": {
