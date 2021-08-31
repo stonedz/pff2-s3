@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace pff\modules;
 
@@ -48,14 +48,14 @@ class Pff2S3 extends AModule implements IConfigurableModule
     {
         $this->loadConfig($confFile);
 
-        $this->s3Client = new S3Client(array(
-            'credentials' => array(
+        $this->s3Client = new S3Client([
+            'credentials' => [
                 'key' => $this->awsKey,
                 'secret' => $this->awsPass,
-            ),
+            ],
             'region' => $this->region,
-            'version'=> '2006-03-01'
-        ));
+            'version'=> '2006-03-01',
+        ]);
     }
 
     /**
@@ -78,10 +78,10 @@ class Pff2S3 extends AModule implements IConfigurableModule
      */
     public function getContent($key)
     {
-        $result = $this->s3Client->getObject(array(
+        $result = $this->s3Client->getObject([
             'Bucket' => $this->bucketName,
-            'Key'    => $key
-        ));
+            'Key'    => $key,
+        ]);
 
         return $result['Body'];
     }
@@ -94,11 +94,11 @@ class Pff2S3 extends AModule implements IConfigurableModule
      */
     public function putFileContent($key, $content, $isPublic = false)
     {
-        $options = array(
+        $options = [
             'Bucket' => $this->bucketName,
             'Key'    => $key,
-            'Body'   => $content
-        );
+            'Body'   => $content,
+        ];
 
         if ($isPublic) {
             $options['ACL'] = 'public-read';
@@ -119,11 +119,11 @@ class Pff2S3 extends AModule implements IConfigurableModule
      */
     public function putFile($key, $localPath, $isPublic = false)
     {
-        $options = array(
+        $options = [
             'Bucket'     => $this->bucketName,
             'Key'        => $key,
-            'SourceFile' => $localPath
-        );
+            'SourceFile' => $localPath,
+        ];
 
         if ($isPublic) {
             $options['ACL'] = 'public-read';
@@ -142,10 +142,10 @@ class Pff2S3 extends AModule implements IConfigurableModule
      */
     public function deleteFile($key)
     {
-        $res = $this->s3Client->deleteObject(array(
+        $res = $this->s3Client->deleteObject([
             'Bucket' => $this->bucketName,
-            'Key' => $key
-        ));
+            'Key' => $key,
+        ]);
         if ($res) {
             return true;
         } else {
@@ -155,7 +155,7 @@ class Pff2S3 extends AModule implements IConfigurableModule
 
     public function uploadDir($loaclDirPath, $remotePath = null, $isPublic = false)
     {
-        $options = array();
+        $options = [];
         if ($isPublic) {
             $options['params']['ACL'] = 'public-read';
         }
@@ -173,7 +173,7 @@ class Pff2S3 extends AModule implements IConfigurableModule
      *
      * @param $bucketName string
      */
-    public function setBucket($bucketName)
+    public function setBucket($bucketName): void
     {
         $this->bucketName = $bucketName;
     }
@@ -197,7 +197,7 @@ class Pff2S3 extends AModule implements IConfigurableModule
     /**
      * @param string $cloudfrontUrl
      */
-    public function setCloudfrontUrl($cloudfrontUrl)
+    public function setCloudfrontUrl($cloudfrontUrl): void
     {
         $this->cloudfrontUrl = $cloudfrontUrl;
     }
